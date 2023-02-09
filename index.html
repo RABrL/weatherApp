@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <!-- Fontawesome Icons  -->
+  <script src="https://kit.fontawesome.com/d7042d0bf6.js" crossorigin="anonymous"></script>
+  <!-- Roboto Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet" />
+  <!-- CSS File -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="search-box">
+        <i class="fa-solid fa-location-dot"></i>
+        <input type="text" placeholder="Type Your Location">
+        <button class="fa-solid fa-magnifying-glass"></button>
+      </div>
+
+      <div class="not-found">
+        <img src="./public/assets/404.jpg" alt="">
+        <p>Oops! invalid location</p>
+      </div>
+      <div class="contend">
+        <div class="weather-box">
+          <img src="" alt="">
+          <p class="temperature">Temperature</p>
+          <p class="description">Description</p>
+        </div>
+
+        <div class="weather-details">
+          <div class="humidity-details">
+            <i class="fa-solid fa-water"></i>
+            <div class="text">
+              <span></span>
+              <p>Humidity</p>
+            </div>
+          </div>
+
+          <div class="wind-details">
+            <i class="fa-solid fa-wind"></i>
+            <div class="text">
+              <span></span>
+              <p>Wind speed</p>
+            </div>
+          </div>
+
+          <div class="pressure-details">
+            <i class="fa-solid fa-arrow-down-up-across-line"></i>
+            <div class="text">
+              <span></span>
+              <p>Pressure</p>
+            </div>
+          </div>
+
+          <div class="visibility-details">
+            <i class="fa-solid fa-eye"></i>
+            <div class="text">
+              <span></span>
+              <p>Visibility</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
