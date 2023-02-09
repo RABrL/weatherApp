@@ -61,7 +61,7 @@ function render() {
 
     const cleanedData = cleanData(data)
 
-    img.src = `./public/assets/${cleanedData.main}.png`
+    img.src = `./assets/${cleanedData.main}.png`
     temperature.innerHTML = `${parseInt((cleanedData.temp - 270))}<span>°C</span>`
     description.innerText = cleanedData.description
     humidity.innerText = `${cleanedData.humidity}%`
