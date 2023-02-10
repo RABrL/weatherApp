@@ -16,6 +16,7 @@ html {
 }
 
 body {
+  width: 100vw;
   height: 100vh;
   display: grid;
   place-content: center;
@@ -196,5 +197,12 @@ body {
   to {
     scale: 1;
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container{
+    width: auto;
+    margin: 0 2rem;
   }
 }
