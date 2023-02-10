@@ -12,15 +12,16 @@ const error404 = $('.not-found')
 search.addEventListener('click', render)
 
 document.addEventListener('keypress', (e) => {
-  if(e.key === 'Enter') render()
+  if (e.key === 'Enter') render()
 })
 
-function cleanData(data) {
-  const { weather:[weather], main: {temp,pressure,humidity},visibility, wind: {speed}  } = data
-  const { main , description } = weather
+function cleanData (data) {
+  const { weather: [weather], main: { temp, pressure, humidity }, visibility, wind: { speed } } = data
+  const { main, description, icon } = weather
   return {
     main: main.toLowerCase(),
     description,
+    icon,
     temp,
     pressure,
     humidity,
@@ -29,51 +30,56 @@ function cleanData(data) {
   }
 }
 
-function render() {
+function render () {
   const city = $('.search-box input').value
 
-  if(!city) return
+  if (!city) return
 
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
-  .then(res => res.json())
-  .then(data => {
-    if(data.cod === '404'){
-      container.style.height = '55rem'
+    .then(res => res.json())
+    .then(data => {
+      if (data.cod === '404') {
+        container.style.height = '55rem'
 
-      weatherBox.style.display = 'none'
-      weatherDetails.style.display = 'none'
+        weatherBox.style.display = 'none'
+        weatherDetails.style.display = 'none'
 
-      error404.style.display = 'block'
-      error404.classList.add('fadeIn')
-      return
-    }
+        error404.style.display = 'block'
+        error404.classList.add('fadeIn')
+        return
+      }
 
-    error404.style.display = 'none'
-    error404.classList.remove('fadeIn')
+      error404.style.display = 'none'
+      error404.classList.remove('fadeIn')
 
-    const img = $('.weather-box img')
-    const temperature = $('.temperature')
-    const description = $('.description')
-    const humidity = $('.humidity-details .text span')
-    const wind = $('.wind-details .text span')
-    const pressure = $('.pressure-details .text span')
-    const visibility = $('.visibility-details .text span')
+      weatherBox.classList.remove('fadeIn')
+      weatherDetails.classList.remove('fadeIn')
 
-    const cleanedData = cleanData(data)
+      const img = $('.weather-box img')
+      const temperature = $('.temperature')
+      const description = $('.description')
+      const humidity = $('.humidity-details .text span')
+      const wind = $('.wind-details .text span')
+      const pressure = $('.pressure-details .text span')
+      const visibility = $('.visibility-details .text span')
 
-    img.src = `./images/${cleanedData.main}.png`
-    temperature.innerHTML = `${parseInt((cleanedData.temp - 270))}<span>°C</span>`
-    description.innerText = cleanedData.description
-    humidity.innerText = `${cleanedData.humidity}%`
-    wind.innerText = `${parseInt(cleanedData.speed)}km/h`
-    pressure.innerText = cleanedData.pressure + 'mb'
-    visibility.innerText = `${cleanedData.visibility/1000}km`
+      const cleanedData = cleanData(data)
 
-    weatherBox.style.display = ''
-    weatherDetails.style.display = ''
-    weatherBox.classList.add('fadeIn')
-    weatherDetails.classList.add('fadeIn')
+      img.src = `http://openweathermap.org/img/wn/${cleanedData.icon}@4x.png`
+      temperature.innerHTML = `${parseInt((cleanedData.temp - 270))}<span>°C</span>`
+      description.innerText = cleanedData.description
+      humidity.innerText = `${cleanedData.humidity}%`
+      wind.innerText = `${parseInt(cleanedData.speed)}km/h`
+      pressure.innerText = cleanedData.pressure + 'mb'
+      visibility.innerText = `${cleanedData.visibility / 1000}km`
 
-    container.style.height = 'min-content'
-  })
+      setTimeout(() => {
+        weatherBox.style.display = ''
+        weatherDetails.style.display = ''
+        weatherBox.classList.add('fadeIn')
+        weatherDetails.classList.add('fadeIn')
+      }, 100)
+
+      container.style.height = 'min-content'
+    })
 }
