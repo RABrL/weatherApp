@@ -17,7 +17,7 @@ html {
 
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: calc(var(--vh) * 100);
   display: grid;
   place-content: center;
   background: var(--var-theme);

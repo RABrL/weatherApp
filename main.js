@@ -1,6 +1,14 @@
 const API_KEY = '9c54112c07e72b95863bcc33c5d4c305'
-// https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
+// Calculate 1vh value in pixels
+// based on window inner height
+const vh = window.innerHeight * 0.01
+
+// Set the CSS variable to the root element
+// Which is equal to 1vh
+document.documentElement.style.setProperty('--vh', vh + 'px')
+
+// -----------------------------------
 const $ = selector => document.querySelector(selector)
 
 const container = $('.container')
